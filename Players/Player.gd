@@ -31,6 +31,8 @@ func calcVSpeed(delta) -> Vector2:
 func getJumpButton():
 	if(is_on_floor() and Input.is_action_pressed("ui_up")):
 		jumpTime = 0
+		if(not $Jump.playing):
+			$Jump.play()
 	elif(is_on_floor()):
 		jumpTime = 0.5
 	elif(Input.is_action_just_released("ui_up") and jumpTime<0.3):

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Levels/Test Level/TestTexture.png" type="Texture" id=1]
 [ext_resource path="res://Levels/Test Level/Vqv8F4X.png" type="Texture" id=2]
 [ext_resource path="res://Players/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Levels/Test Level/Label.gd" type="Script" id=4]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -63,3 +64,13 @@ polygon = PoolVector2Array( 8, -8, 1952, -24, 2216, 1280, 96, 1240, -168, 1200, 
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 288.6, 537.019 )
+
+[node name="Test Nom d\'utilisateur" type="Label" parent="."]
+margin_left = 103.221
+margin_top = 201.168
+margin_right = 381.221
+margin_bottom = 341.168
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
