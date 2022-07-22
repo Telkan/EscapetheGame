@@ -33,6 +33,9 @@ func getJumpButton():
 		jumpTime = 0
 	elif(is_on_floor()):
 		jumpTime = 0.5
+	elif(Input.is_action_just_released("ui_up") and jumpTime<0.3):
+		jumpTime = 0.3
+		
 
 func _physics_process(delta):
 	if canMove:
