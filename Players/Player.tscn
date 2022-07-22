@@ -5,14 +5,14 @@
 [ext_resource path="res://Players/Jump.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 24 )
+extents = Vector2( 24, 24 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 jumpCurve = ExtResource( 2 )
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PoolVector2Array( -8, -24, 8, -24, 8, 24, -8, 24 )
+[node name="Sprite" type="Polygon2D" parent="."]
+polygon = PoolVector2Array( -16, -24, 16, -24, 16, 24, -16, 24 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
