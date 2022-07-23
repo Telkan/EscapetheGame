@@ -40,7 +40,7 @@ func getJumpButton():
 
 func _physics_process(delta):
 	if canMove:
-		var movement = getMovement(delta)
+		movement = getMovement(delta)
 		getJumpButton()
 		if(not is_on_floor()):
 			movement += calcVSpeed(delta)
