@@ -23,3 +23,8 @@ func _on_FallingOffScreen_body_entered(body):
 	beanToKill+=1
 	$BeanCrunchSound.play()
 	pass # Replace with function body.
+
+
+func _on_BeanCollectible_displayBeans():
+	set_visible(true)
+	pass # Replace with function body.

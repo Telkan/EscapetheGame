@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Levels/TileSet/Tileset3.png" type="Texture" id=1]
 [ext_resource path="res://Levels/MarioLevel/Hint.gd" type="Script" id=2]
@@ -28,6 +28,8 @@
 [ext_resource path="res://Levels/MarioLevel/Bean/Bean2.png" type="Texture" id=26]
 [ext_resource path="res://Levels/MarioLevel/Beans.gd" type="Script" id=27]
 [ext_resource path="res://Levels/MarioLevel/Bean/EatABean.wav" type="AudioStream" id=28]
+[ext_resource path="res://Levels/MarioLevel/Camera2D.gd" type="Script" id=29]
+[ext_resource path="res://Players/Fall.wav" type="AudioStream" id=30]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -257,6 +259,38 @@ extents = Vector2( 23.9998, 60 )
 
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 7096, 264 )
+
+[sub_resource type="Animation" id=21]
+resource_name = "Respawn"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Camera2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "setShake"
+}, {
+"args": [ false ],
+"method": "setShake"
+} ]
+}
 
 [sub_resource type="SpriteFrames" id=20]
 animations = [ {
@@ -706,10 +740,24 @@ polygon = PoolVector2Array( -19.968, -28.8293, 12.032, -28.8293, 12.032, 3.17067
 [node name="Area2D" type="Area2D" parent="Terrain/BeanCollectible"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/BeanCollectible/Area2D"]
+position = Vector2( 3.99976, 0 )
+z_index = -1
 shape = SubResource( 17 )
 
 [node name="Collected" type="AudioStreamPlayer" parent="Terrain/BeanCollectible"]
 stream = ExtResource( 23 )
+
+[node name="Sprite" type="Sprite" parent="Terrain/BeanCollectible"]
+position = Vector2( 2.02759, -0.307678 )
+rotation = 0.237365
+z_index = -1
+texture = ExtResource( 21 )
+
+[node name="Sprite2" type="Sprite" parent="Terrain/BeanCollectible"]
+position = Vector2( 2.33521, 4 )
+rotation = 0.712094
+z_index = -1
+texture = ExtResource( 21 )
 
 [node name="FallingZones" type="Node2D" parent="Terrain"]
 
@@ -750,6 +798,9 @@ position = Vector2( 15640, 840 )
 ]]
 position = Vector2( 19080, 856 )
 
+[node name="Fall" type="AudioStreamPlayer" parent="Terrain/FallingZones/FallingOffScreen"]
+stream = ExtResource( 30 )
+
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 8200, 216 )
 
@@ -758,6 +809,10 @@ current = true
 limit_left = 0
 limit_top = 0
 limit_bottom = 1080
+script = ExtResource( 29 )
+
+[node name="RespawnAnim" type="AnimationPlayer" parent="Player"]
+anims/Respawn = SubResource( 21 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -837,6 +892,7 @@ offset = Vector2( 0, 200 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Beans" type="Node2D" parent="CanvasLayer"]
+visible = false
 script = ExtResource( 27 )
 
 [node name="Bean1" type="AnimatedSprite" parent="CanvasLayer/Beans"]
@@ -912,9 +968,11 @@ stream = ExtResource( 28 )
 [connection signal="body_exited" from="Terrain/Hints/JumpHint19/Area2D" to="Terrain/Hints/JumpHint19" method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="Terrain/Hints/JumpHint20/Area2D" to="Terrain/Hints/JumpHint20" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Terrain/Hints/JumpHint20/Area2D" to="Terrain/Hints/JumpHint20" method="_on_Area2D_body_exited"]
+[connection signal="displayBeans" from="Terrain/BeanCollectible" to="CanvasLayer/Beans" method="_on_BeanCollectible_displayBeans"]
 [connection signal="body_entered" from="Terrain/BeanCollectible/Area2D" to="Terrain/BeanCollectible" method="_on_Area2D_body_entered"]
 [connection signal="finished" from="Terrain/BeanCollectible/Collected" to="Terrain/BeanCollectible" method="_on_AudioStreamPlayer_finished"]
 [connection signal="body_entered" from="Terrain/FallingZones/FallingOffScreen" to="CanvasLayer/Beans" method="_on_FallingOffScreen_body_entered"]
+[connection signal="body_entered" from="Terrain/FallingZones/FallingOffScreen" to="Terrain/FallingZones/FallingOffScreen" method="_on_FallingOffScreen_body_entered"]
 [connection signal="animation_finished" from="CanvasLayer/Beans/Bean1" to="Player" method="_on_Bean1_animation_finished"]
 [connection signal="animation_finished" from="CanvasLayer/Beans/Bean2" to="Player" method="_on_Bean2_animation_finished"]
 [connection signal="animation_finished" from="CanvasLayer/Beans/Bean3" to="Player" method="_on_Bean3_animation_finished"]

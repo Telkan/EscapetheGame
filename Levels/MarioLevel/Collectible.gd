@@ -1,5 +1,5 @@
 extends Sprite
-
+signal displayBeans()
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -20,6 +20,7 @@ func _on_Area2D_body_entered(body):
 	if(not isCollected):
 		set_visible(false)
 		$Collected.play()
+		emit_signal("displayBeans")
 	pass # Replace with function body.
 
 

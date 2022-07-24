@@ -60,6 +60,7 @@ func respawn():
 
 func _on_Bean1_animation_finished():
 	respawn()
+	find_node("RespawnAnim").play("Respawn")
 
 
 func _on_Bean2_animation_finished():
