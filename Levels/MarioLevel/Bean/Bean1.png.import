@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Tileset5.png-3022216a9fd93f40ef95b3fd18e086b2.stex"
+path="res://.import/Bean1.png-12cc788f6fff68abf0297a11e736d26c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Levels/TileSet/Tileset5.png"
-dest_files=[ "res://.import/Tileset5.png-3022216a9fd93f40ef95b3fd18e086b2.stex" ]
+source_file="res://Levels/MarioLevel/Bean/Bean1.png"
+dest_files=[ "res://.import/Bean1.png-12cc788f6fff68abf0297a11e736d26c.stex" ]
 
 [params]
 
