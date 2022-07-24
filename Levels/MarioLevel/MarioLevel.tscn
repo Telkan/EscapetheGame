@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://Levels/TileSet/Tileset3.png" type="Texture" id=1]
 [ext_resource path="res://Levels/MarioLevel/Hint.gd" type="Script" id=2]
@@ -30,6 +30,8 @@
 [ext_resource path="res://Levels/MarioLevel/Bean/EatABean.wav" type="AudioStream" id=28]
 [ext_resource path="res://Levels/MarioLevel/Camera2D.gd" type="Script" id=29]
 [ext_resource path="res://Players/Fall.wav" type="AudioStream" id=30]
+[ext_resource path="res://Players/Respawn.wav" type="AudioStream" id=31]
+[ext_resource path="res://Players/Trying to respawn.wav" type="AudioStream" id=32]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -46,19 +48,19 @@ points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 [sub_resource type="OccluderPolygon2D" id=5]
 polygon = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=15]
+[sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 
-[sub_resource type="OccluderPolygon2D" id=8]
+[sub_resource type="OccluderPolygon2D" id=7]
 polygon = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=9]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=10]
-points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=14]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 
 [sub_resource type="TileSet" id=11]
@@ -118,14 +120,14 @@ resource_local_to_scene = true
 2/navigation_offset = Vector2( 0, 0 )
 2/shape_offset = Vector2( 0, 0 )
 2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape = SubResource( 15 )
+2/shape = SubResource( 6 )
 2/shape_one_way = false
 2/shape_one_way_margin = 1.0
 2/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 15 ),
+"shape": SubResource( 6 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 2/z_index = 0
@@ -136,18 +138,18 @@ resource_local_to_scene = true
 3/region = Rect2( 0, 0, 64, 64 )
 3/tile_mode = 0
 3/occluder_offset = Vector2( 0, 0 )
-3/occluder = SubResource( 8 )
+3/occluder = SubResource( 7 )
 3/navigation_offset = Vector2( 0, 0 )
 3/shape_offset = Vector2( 0, 0 )
 3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape = SubResource( 9 )
+3/shape = SubResource( 8 )
 3/shape_one_way = false
 3/shape_one_way_margin = 1.0
 3/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 9 ),
+"shape": SubResource( 8 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 3/z_index = 0
@@ -161,14 +163,14 @@ resource_local_to_scene = true
 4/navigation_offset = Vector2( 0, 0 )
 4/shape_offset = Vector2( 0, 0 )
 4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-4/shape = SubResource( 10 )
+4/shape = SubResource( 9 )
 4/shape_one_way = false
 4/shape_one_way_margin = 1.0
 4/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 10 ),
+"shape": SubResource( 9 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 4/z_index = 0
@@ -224,44 +226,45 @@ resource_local_to_scene = true
 8/navigation_offset = Vector2( 0, 0 )
 8/shape_offset = Vector2( 0, 0 )
 8/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-8/shape = SubResource( 14 )
+8/shape = SubResource( 10 )
 8/shape_one_way = true
 8/shape_one_way_margin = 1.0
 8/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": true,
 "one_way_margin": 1.0,
-"shape": SubResource( 14 ),
+"shape": SubResource( 10 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 8/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 18.2394, 805.916 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=13]
 size = 32
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 19 )
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 35.9813, 48.1072 )
 
-[sub_resource type="DynamicFont" id=18]
+[sub_resource type="DynamicFont" id=15]
 size = 64
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 19 )
 
-[sub_resource type="RectangleShape2D" id=17]
+[sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 23.9998, 60 )
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 7096, 264 )
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=18]
 resource_name = "Respawn"
+length = 1.3
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
@@ -279,9 +282,9 @@ tracks/1/path = NodePath("Camera2D")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
-tracks/1/enabled = false
+tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.5, 1 ),
+"times": PoolRealArray( 0.9, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [ true ],
@@ -290,6 +293,318 @@ tracks/1/keys = {
 "args": [ false ],
 "method": "setShake"
 } ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Respawn:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("RespawnBuildup:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:canMove")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "Respawn2"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Camera2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "setShake"
+}, {
+"args": [ false ],
+"method": "setShake"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Respawn:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("RespawnBuildup:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:canMove")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "Respawn3"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Camera2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.9, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "setShake"
+}, {
+"args": [ false ],
+"method": "setShake"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Respawn:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("RespawnBuildup:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.9, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:canMove")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "Respawn4"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Camera2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.9, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "setShake"
+}, {
+"args": [ false ],
+"method": "setShake"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Respawn:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("RespawnBuildup:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.9, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:canMove")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "Respawn5"
+length = 4.7
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Camera2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.9, 4.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "setShake"
+}, {
+"args": [ false ],
+"method": "setShake"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Respawn:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 4.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("RespawnBuildup:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.9, 4.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:canMove")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 4.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
 
 [sub_resource type="SpriteFrames" id=20]
@@ -315,7 +630,7 @@ tile_data = PoolIntArray( -327455, 536870914, 0, -261919, 536870914, 0, -196383,
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/StaticBody2D"]
 position = Vector2( 0, 404.543 )
-shape = SubResource( 16 )
+shape = SubResource( 12 )
 
 [node name="Hints" type="Node2D" parent="Terrain"]
 
@@ -324,7 +639,7 @@ margin_left = 797.019
 margin_top = 689.107
 margin_right = 1171.02
 margin_bottom = 721.107
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "You can jump by pressing "
 script = ExtResource( 2 )
 __meta__ = {
@@ -340,14 +655,14 @@ position = Vector2( 0, -14.2543 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint2" type="Label" parent="Terrain/Hints"]
 margin_left = 1336.86
 margin_top = 758.902
 margin_right = 1710.86
 margin_bottom = 790.902
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "Try not to fall!"
 script = ExtResource( 2 )
 __meta__ = {
@@ -359,14 +674,14 @@ position = Vector2( -93.0481, -16.5018 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint2/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint3" type="Label" parent="Terrain/Hints"]
 margin_left = 2232.15
 margin_top = 563.651
 margin_right = 2606.15
 margin_bottom = 595.651
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "Keep going!"
 script = ExtResource( 2 )
 __meta__ = {
@@ -378,14 +693,14 @@ position = Vector2( -93.0481, -16.5018 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint3/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint4" type="Label" parent="Terrain/Hints"]
 margin_left = 2426.66
 margin_top = 499.783
 margin_right = 2800.66
 margin_bottom = 531.783
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "I believe in you!"
 script = ExtResource( 2 )
 __meta__ = {
@@ -397,14 +712,14 @@ position = Vector2( -93.0481, -16.5018 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint4/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint5" type="Label" parent="Terrain/Hints"]
 margin_left = 2618.95
 margin_top = 437.67
 margin_right = 2992.95
 margin_bottom = 469.67
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "Almost there"
 script = ExtResource( 2 )
 __meta__ = {
@@ -416,14 +731,14 @@ position = Vector2( -93.0481, -16.5018 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint5/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint6" type="Label" parent="Terrain/Hints"]
 margin_left = 2943.76
 margin_top = 369.367
 margin_right = 3317.76
 margin_bottom = 401.367
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "YOU DID IT!!!"
 script = ExtResource( 2 )
 __meta__ = {
@@ -435,14 +750,14 @@ position = Vector2( -93.0481, -16.5018 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint6/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint7" type="Label" parent="Terrain/Hints"]
 margin_left = 3261.85
 margin_top = 374.086
 margin_right = 3635.85
 margin_bottom = 406.086
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "Just do your best"
 script = ExtResource( 2 )
 __meta__ = {
@@ -454,14 +769,14 @@ position = Vector2( -93.0481, -16.5018 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint7/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint8" type="Label" parent="Terrain/Hints"]
 margin_left = 3984.0
 margin_top = 372.752
 margin_right = 4358.0
 margin_bottom = 439.752
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "Don't worry if you fall,
 you can just try again!"
 script = ExtResource( 2 )
@@ -474,14 +789,14 @@ position = Vector2( -50.3333, -15.1669 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint8/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint9" type="Label" parent="Terrain/Hints"]
 margin_left = 4107.73
 margin_top = 752.335
 margin_right = 4481.73
 margin_bottom = 819.335
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "It's okay, you'll get better!"
 script = ExtResource( 2 )
 __meta__ = {
@@ -493,14 +808,14 @@ position = Vector2( -50.3333, -15.1669 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint9/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint10" type="Label" parent="Terrain/Hints"]
 margin_left = 5395.73
 margin_top = 430.335
 margin_right = 5769.73
 margin_bottom = 497.335
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "Congrats, you're ready for
 a challenge now"
 script = ExtResource( 2 )
@@ -513,14 +828,14 @@ position = Vector2( -50.3333, -15.1669 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint10/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint11" type="Label" parent="Terrain/Hints"]
 margin_left = 6419.62
 margin_top = 434.577
 margin_right = 6799.62
 margin_bottom = 501.577
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "Be careful, you can hurt
 yourself here"
 script = ExtResource( 2 )
@@ -533,14 +848,14 @@ position = Vector2( -50.3333, -15.1669 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint11/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint12" type="Label" parent="Terrain/Hints"]
 margin_left = 7123.08
 margin_top = 435.912
 margin_right = 7503.08
 margin_bottom = 502.912
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "But don't worry, the magic
 beans will save you"
 script = ExtResource( 2 )
@@ -553,14 +868,14 @@ position = Vector2( -50.3333, -15.1669 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint12/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint13" type="Label" parent="Terrain/Hints"]
 margin_left = 7984.0
 margin_top = 432.0
 margin_right = 8364.0
 margin_bottom = 499.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "If you fall, just eat a bean
 to get back up!"
 script = ExtResource( 2 )
@@ -573,14 +888,14 @@ position = Vector2( -16.0002, -16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint13/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint14" type="Label" parent="Terrain/Hints"]
 margin_left = 10296.0
 margin_top = 432.0
 margin_right = 10676.0
 margin_bottom = 499.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "It's gonna get harder from
 here, but I still believe in you"
 script = ExtResource( 2 )
@@ -593,14 +908,14 @@ position = Vector2( -16.0002, -16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint14/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint15" type="Label" parent="Terrain/Hints"]
 margin_left = 13200.0
 margin_top = 816.0
 margin_right = 13610.0
 margin_bottom = 883.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "Wow, I'm impressed!"
 script = ExtResource( 2 )
 __meta__ = {
@@ -612,14 +927,14 @@ position = Vector2( -48.0002, -16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint15/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint16" type="Label" parent="Terrain/Hints"]
 margin_left = 13896.0
 margin_top = 888.0
 margin_right = 14306.0
 margin_bottom = 955.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "You got this!"
 script = ExtResource( 2 )
 __meta__ = {
@@ -631,14 +946,14 @@ position = Vector2( -104, -24 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint16/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint17" type="Label" parent="Terrain/Hints"]
 margin_left = 15752.0
 margin_top = 760.0
 margin_right = 16162.0
 margin_bottom = 827.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 0.615686, 0, 0, 1 )
 text = "You weren't supposed
 to get here"
@@ -652,14 +967,14 @@ position = Vector2( -104, -24 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint17/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint18" type="Label" parent="Terrain/Hints"]
 margin_left = 16160.0
 margin_top = 760.0
 margin_right = 16570.0
 margin_bottom = 827.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 0.615686, 0, 0, 1 )
 text = "Stop going forward"
 script = ExtResource( 2 )
@@ -672,14 +987,14 @@ position = Vector2( -64.0002, -24 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint18/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint19" type="Label" parent="Terrain/Hints"]
 margin_left = 17312.0
 margin_top = 696.0
 margin_right = 17722.0
 margin_bottom = 763.0
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 15 )
 custom_colors/font_color = Color( 0.615686, 0, 0, 1 )
 text = "GET OUT "
 script = ExtResource( 2 )
@@ -692,14 +1007,14 @@ position = Vector2( -64.0002, -24 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint19/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="JumpHint20" type="Label" parent="Terrain/Hints"]
 margin_left = 19032.0
 margin_top = 760.0
 margin_right = 19442.0
 margin_bottom = 827.0
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 15 )
 custom_colors/font_color = Color( 0.615686, 0, 0, 1 )
 text = "JUMP IN"
 script = ExtResource( 2 )
@@ -712,7 +1027,7 @@ position = Vector2( -64.0002, -24 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Hints/JumpHint20/Area2D"]
 position = Vector2( 193.5, 104 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="BeanCollectible" type="Sprite" parent="Terrain"]
 position = Vector2( 7712, 448 )
@@ -742,7 +1057,7 @@ polygon = PoolVector2Array( -19.968, -28.8293, 12.032, -28.8293, 12.032, 3.17067
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/BeanCollectible/Area2D"]
 position = Vector2( 3.99976, 0 )
 z_index = -1
-shape = SubResource( 17 )
+shape = SubResource( 16 )
 
 [node name="Collected" type="AudioStreamPlayer" parent="Terrain/BeanCollectible"]
 stream = ExtResource( 23 )
@@ -766,7 +1081,7 @@ script = ExtResource( 24 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/FallingZones/FallingOffScreen"]
 position = Vector2( 13368, 1624 )
-shape = SubResource( 19 )
+shape = SubResource( 17 )
 
 [node name="RespawnPoint" type="Node2D" parent="Terrain/FallingZones/FallingOffScreen" groups=[
 "SpawnPoints",
@@ -811,8 +1126,19 @@ limit_top = 0
 limit_bottom = 1080
 script = ExtResource( 29 )
 
+[node name="Respawn" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource( 31 )
+
+[node name="RespawnBuildup" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource( 32 )
+volume_db = 4.727
+
 [node name="RespawnAnim" type="AnimationPlayer" parent="Player"]
-anims/Respawn = SubResource( 21 )
+anims/Respawn = SubResource( 18 )
+anims/Respawn2 = SubResource( 21 )
+anims/Respawn3 = SubResource( 22 )
+anims/Respawn4 = SubResource( 23 )
+anims/Respawn5 = SubResource( 24 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

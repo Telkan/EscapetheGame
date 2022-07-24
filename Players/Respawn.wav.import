@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Respawn.wav-a8a2e11bbd31bdd8630cde6c1535091d.sample"
+
+[deps]
+
+source_file="res://Players/Respawn.wav"
+dest_files=[ "res://.import/Respawn.wav-a8a2e11bbd31bdd8630cde6c1535091d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

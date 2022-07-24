@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var canMove := true
+export var canMove := true
 var moveSpeed := 18000
 export(Curve) var jumpCurve
 var jumpTime = 0.5
@@ -65,19 +65,23 @@ func _on_Bean1_animation_finished():
 
 func _on_Bean2_animation_finished():
 	respawn()
+	find_node("RespawnAnim").play("Respawn2")
 	pass # Replace with function body.
 
 
 func _on_Bean3_animation_finished():
 	respawn()
+	find_node("RespawnAnim").play("Respawn3")
 	pass # Replace with function body.
 
 
 func _on_Bean4_animation_finished():
 	respawn()
+	find_node("RespawnAnim").play("Respawn4")
 	pass # Replace with function body.
 
 
 func _on_Bean5_animation_finished():
 	respawn()
+	find_node("RespawnAnim").play("Respawn4")
 	pass # Replace with function body.

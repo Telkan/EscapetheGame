@@ -7,14 +7,15 @@ var rng = RandomNumberGenerator.new()
 # var a = 2
 # var b = "text"
 var shaking := false
-
+var shakingEffort = 1
 func _ready():
 	rng.randomize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if shaking:
-		offset = Vector2(rng.randf_range(-10.0, 10.0),rng.randf_range(-10.0, 10.0))
+		offset = Vector2(rng.randf_range(-shakingEffort, shakingEffort),rng.randf_range(-shakingEffort, shakingEffort))
+		shakingEffort+= 5*delta
 	pass
 
 func setShake(value):
