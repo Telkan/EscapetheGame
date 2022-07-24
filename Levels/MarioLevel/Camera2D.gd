@@ -15,8 +15,11 @@ func _ready():
 func _process(delta):
 	if shaking:
 		offset = Vector2(rng.randf_range(-shakingEffort, shakingEffort),rng.randf_range(-shakingEffort, shakingEffort))
-		shakingEffort+= 5*delta
+		shakingEffort+= 20*delta
 	pass
 
 func setShake(value):
 	shaking = value
+	shakingEffort = 1
+	if value == false:
+		offset = Vector2.ZERO
