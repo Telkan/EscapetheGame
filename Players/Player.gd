@@ -45,3 +45,38 @@ func _physics_process(delta):
 		if(not is_on_floor()):
 			movement += calcVSpeed(delta)
 		move_and_slide(movement,Vector2.UP)
+
+
+func respawn():
+	var newSpawnPoint = Vector2(184,768)
+	var spawnPoints = get_tree().get_nodes_in_group("SpawnPoints")
+	for spawnPoint in spawnPoints:
+		if spawnPoint.global_position.x > global_position.x:
+			continue
+		if spawnPoint.global_position.distance_to(global_position) < newSpawnPoint.distance_to(global_position):
+			newSpawnPoint = spawnPoint.global_position
+		
+	global_position = newSpawnPoint
+
+func _on_Bean1_animation_finished():
+	respawn()
+
+
+func _on_Bean2_animation_finished():
+	respawn()
+	pass # Replace with function body.
+
+
+func _on_Bean3_animation_finished():
+	respawn()
+	pass # Replace with function body.
+
+
+func _on_Bean4_animation_finished():
+	respawn()
+	pass # Replace with function body.
+
+
+func _on_Bean5_animation_finished():
+	respawn()
+	pass # Replace with function body.
