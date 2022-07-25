@@ -1,0 +1,130 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Levels/Test Level/Vqv8F4X.png" type="Texture" id=1]
+[ext_resource path="res://Levels/HorrorLevel/HorrorLevel.png" type="Texture" id=2]
+[ext_resource path="res://Levels/HorrorLevel/Player/HorrorPlayer.png" type="Texture" id=3]
+[ext_resource path="res://Levels/HorrorLevel/Player/PlayerHorror.gd" type="Script" id=4]
+[ext_resource path="res://Levels/HorrorLevel/FlashLight.png" type="Texture" id=5]
+[ext_resource path="res://Levels/HorrorLevel/Player/footsteps.wav" type="AudioStream" id=6]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 8, 26 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 8, 0, 8, 26 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 0, 8, 26 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 1 ) ],
+"loop": true,
+"name": "Idling",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "Walking",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 10, 23.8357 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 1327.6, 10 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 34.1099, 354.041 )
+
+[node name="HorrorLevel" type="Node2D"]
+
+[node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 459.431, 557.607 )
+scale = Vector2( 5, 5 )
+script = ExtResource( 4 )
+
+[node name="Sprite" type="AnimatedSprite" parent="Player"]
+modulate = Color( 0.0117647, 0.0117647, 0.0117647, 1 )
+scale = Vector2( 2, 2 )
+z_index = 1
+frames = SubResource( 4 )
+animation = "Idling"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2( -2.47924, 2.36046 )
+z_index = 1
+shape = SubResource( 5 )
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+limit_left = 0
+limit_top = 0
+limit_bottom = 0
+
+[node name="LD" type="Light2D" parent="Player"]
+position = Vector2( 57.9381, -13.4545 )
+texture = ExtResource( 5 )
+texture_scale = 0.39
+energy = 7.9
+
+[node name="LG" type="Light2D" parent="Player"]
+visible = false
+position = Vector2( -58.0281, -8.50517 )
+rotation = 3.14159
+texture = ExtResource( 5 )
+texture_scale = 0.39
+energy = 7.9
+
+[node name="Footsteps" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource( 6 )
+
+[node name="level" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="level"]
+position = Vector2( 0, 6.10352e-05 )
+scale = Vector2( 1, 1 )
+z_index = -2
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 144, -336, 5048, -272, 5160, 2448, -2136, 2208 )
+
+[node name="Sprite" type="Sprite" parent="level"]
+modulate = Color( 0.0196078, 0.0196078, 0.0196078, 1 )
+position = Vector2( 2112, 560 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="level"]
+position = Vector2( 704, 456 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 1 )
+energy = 7.13
+
+[node name="Light2D2" type="Light2D" parent="level"]
+position = Vector2( 1344, 456 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 1 )
+texture_scale = 0.75
+energy = 5.72
+
+[node name="Light2D3" type="Light2D" parent="level"]
+position = Vector2( 280, 632 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 1 )
+texture_scale = 0.12
+energy = 6.84
+
+[node name="StaticBody2D" type="StaticBody2D" parent="level"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="level/StaticBody2D"]
+position = Vector2( 763.793, 713.691 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="level/StaticBody2D"]
+position = Vector2( 171.389, 585.458 )
+shape = SubResource( 7 )

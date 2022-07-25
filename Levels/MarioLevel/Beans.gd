@@ -6,6 +6,8 @@ extends Node2D
 # var b = "text"
 var beanToKill = 0
 var listOfBeans
+
+signal crashGame()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	listOfBeans = [$Bean1,$Bean2,$Bean3,$Bean4,$Bean5]
@@ -18,6 +20,9 @@ func _process(delta):
 
 
 func _on_FallingOffScreen_body_entered(body):
+	if beanToKill>=5:
+		emit_signal("crashGame")
+		return
 	listOfBeans[beanToKill].frame =1
 	listOfBeans[beanToKill].play()
 	beanToKill+=1

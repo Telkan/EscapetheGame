@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/chipscape.mp3.mp3-b1d2d1b0a324f6941cdc0829dab0251f.mp3str"
+
+[deps]
+
+source_file="res://Levels/MarioLevel/chipscape.mp3.mp3"
+dest_files=[ "res://.import/chipscape.mp3.mp3-b1d2d1b0a324f6941cdc0829dab0251f.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

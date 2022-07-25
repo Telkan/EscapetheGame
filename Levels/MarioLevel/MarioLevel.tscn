@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Levels/TileSet/Tileset3.png" type="Texture" id=1]
 [ext_resource path="res://Levels/MarioLevel/Hint.gd" type="Script" id=2]
@@ -32,6 +32,8 @@
 [ext_resource path="res://Players/Fall.wav" type="AudioStream" id=30]
 [ext_resource path="res://Players/Respawn.wav" type="AudioStream" id=31]
 [ext_resource path="res://Players/Trying to respawn.wav" type="AudioStream" id=32]
+[ext_resource path="res://Levels/MarioLevel/chipscape.mp3.mp3" type="AudioStream" id=33]
+[ext_resource path="res://Ressources/Fonts/ndsbios_memesbruh03.ttf" type="DynamicFontData" id=34]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -615,6 +617,91 @@ animations = [ {
 "speed": 1.7
 } ]
 
+[sub_resource type="DynamicFont" id=25]
+size = 128
+font_data = ExtResource( 34 )
+
+[sub_resource type="Animation" id=26]
+resource_name = "Crash"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ErrorScreen:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 10.3, 11.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "stopCrash"
+}, {
+"args": [  ],
+"method": "changeWorld"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../bgMusic:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.9, 10.3 ),
+"transitions": PoolRealArray( 1, 0, 1 ),
+"update": 0,
+"values": [ 3.782, 12.291, 3.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../bgMusic:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( -2.5, 10.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("ErrorScreen/Label:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( -4.9, 10.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ErrorScreen/Label2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( -4.9, 10.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
 [node name="TestWorld" type="Node2D"]
 script = ExtResource( 25 )
 __meta__ = {
@@ -1122,7 +1209,7 @@ position = Vector2( 19080, 856 )
 stream = ExtResource( 30 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 176, 784 )
+position = Vector2( 8720, 408 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
@@ -1259,6 +1346,43 @@ speed_scale = 0.5
 [node name="BeanCrunchSound" type="AudioStreamPlayer" parent="CanvasLayer/Beans"]
 stream = ExtResource( 28 )
 
+[node name="ErrorScreen" type="Node2D" parent="CanvasLayer"]
+visible = false
+
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/ErrorScreen"]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -168, -136, 2424, -128, 2416, 1664, -520, 1344 )
+
+[node name="Label" type="Label" parent="CanvasLayer/ErrorScreen"]
+margin_left = 128.0
+margin_top = 176.0
+margin_right = 1792.0
+margin_bottom = 272.0
+custom_fonts/font = SubResource( 25 )
+text = "Your console has encountered an error!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="CanvasLayer/ErrorScreen"]
+margin_left = 168.0
+margin_top = 824.0
+margin_right = 1784.0
+margin_bottom = 920.0
+custom_fonts/font = SubResource( 25 )
+text = "Please contact the manufacturer"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CrashDisplay" type="AnimationPlayer" parent="CanvasLayer"]
+anims/Crash = SubResource( 26 )
+
+[node name="bgMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 33 )
+volume_db = 3.0
+autoplay = true
+
 [connection signal="body_entered" from="Terrain/Hints/JumpHint/Area2D" to="Terrain/Hints/JumpHint" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Terrain/Hints/JumpHint/Area2D" to="Terrain/Hints/JumpHint" method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="Terrain/Hints/JumpHint2/Area2D" to="Terrain/Hints/JumpHint2" method="_on_Area2D_body_entered"]
@@ -1303,8 +1427,9 @@ stream = ExtResource( 28 )
 [connection signal="body_entered" from="Terrain/BeanCollectible/Area2D" to="Terrain/BeanCollectible" method="_on_Area2D_body_entered"]
 [connection signal="finished" from="Terrain/BeanCollectible/Collected" to="Terrain/BeanCollectible" method="_on_AudioStreamPlayer_finished"]
 [connection signal="body_entered" from="Terrain/FallingZones/FallingOffScreen" to="CanvasLayer/Beans" method="_on_FallingOffScreen_body_entered"]
-[connection signal="body_entered" from="Terrain/FallingZones/FallingOffScreen" to="Terrain/FallingZones/FallingOffScreen" method="_on_FallingOffScreen_body_entered"]
 [connection signal="body_entered" from="Terrain/FallingZones/FallingOffScreen" to="Player" method="_on_FallingOffScreen_body_entered"]
+[connection signal="body_entered" from="Terrain/FallingZones/FallingOffScreen" to="Terrain/FallingZones/FallingOffScreen" method="_on_FallingOffScreen_body_entered"]
+[connection signal="crashGame" from="CanvasLayer/Beans" to="." method="_on_Beans_crashGame"]
 [connection signal="animation_finished" from="CanvasLayer/Beans/Bean1" to="Player" method="_on_Bean1_animation_finished"]
 [connection signal="animation_finished" from="CanvasLayer/Beans/Bean2" to="Player" method="_on_Bean2_animation_finished"]
 [connection signal="animation_finished" from="CanvasLayer/Beans/Bean3" to="Player" method="_on_Bean3_animation_finished"]

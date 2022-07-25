@@ -10,6 +10,7 @@ var movement := Vector2.ZERO
 var jumping := false
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Sprite.frames = load("res://Players/PlayerNormal.tres")
 	pass # Replace with function body.
 
 
@@ -101,6 +102,7 @@ func _on_Bean3_animation_finished():
 
 
 func _on_Bean4_animation_finished():
+	$Sprite.frames = load("res://Players/PlayerGlitch.tres")
 	find_node("RespawnAnim").play("Respawn4")
 	respawn()
 	pass # Replace with function body.
