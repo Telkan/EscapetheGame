@@ -1,0 +1,212 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Levels/CrashScreen/Bsodwindows10.png" type="Texture" id=1]
+[ext_resource path="res://Levels/HorrorLevel/MarioScreamer.gd" type="Script" id=2]
+[ext_resource path="res://Levels/HorrorLevel/crash.wav" type="AudioStream" id=3]
+[ext_resource path="res://Levels/HorrorLevel/CursedOst.wav" type="AudioStream" id=4]
+[ext_resource path="res://Ressources/Fonts/ndsbios_memesbruh03.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Players/PlayerGlitch.tres" type="SpriteFrames" id=6]
+[ext_resource path="res://Levels/CrashScreen/Label4.gd" type="Script" id=7]
+[ext_resource path="res://Levels/CrashScreen/AnimationPlayer.gd" type="Script" id=8]
+[ext_resource path="res://Levels/CrashScreen/CrashScreen.gd" type="Script" id=9]
+
+[sub_resource type="Animation" id=1]
+resource_name = "CrashAnimation"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Name:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Label2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Label3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 3.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Mario:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 4.1, 5 ),
+"transitions": PoolRealArray( 1, 2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 100, 100 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Mario:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 4.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("Mario/CursedAudio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 4.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath("Mario/Crash")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 4.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/8/type = "method"
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "exit"
+} ]
+}
+
+[sub_resource type="DynamicFont" id=2]
+size = 256
+font_data = ExtResource( 5 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/CrashAnimation = SubResource( 1 )
+script = ExtResource( 8 )
+
+[node name="Mario" type="AnimatedSprite" parent="."]
+light_mask = 0
+position = Vector2( 897.833, 576.63 )
+scale = Vector2( 100, 100 )
+z_index = 4
+frames = ExtResource( 6 )
+animation = "Running"
+frame = 3
+speed_scale = 6.0
+playing = true
+flip_h = true
+script = ExtResource( 2 )
+
+[node name="CursedAudio" type="AudioStreamPlayer2D" parent="Mario"]
+stream = ExtResource( 4 )
+volume_db = 18.909
+
+[node name="Crash" type="AudioStreamPlayer" parent="Mario"]
+stream = ExtResource( 3 )
+
+[node name="Name" type="Label" parent="."]
+margin_left = 673.967
+margin_top = 102.815
+margin_right = 961.967
+margin_bottom = 294.815
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.509804, 0, 0, 1 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 271.066
+margin_top = 254.788
+margin_right = 559.066
+margin_bottom = 446.788
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.509804, 0, 0, 1 )
+text = "RUN"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 1279.86
+margin_top = 513.719
+margin_right = 1567.86
+margin_bottom = 705.719
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.509804, 0, 0, 1 )
+text = "RUN"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 728.671
+margin_top = 830.609
+margin_right = 1016.67
+margin_bottom = 1022.61
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.509804, 0, 0, 1 )
+text = "RUN"
+__meta__ = {
+"_edit_use_anchors_": false
+}

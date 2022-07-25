@@ -12,7 +12,9 @@ config_version=4
 
 config/name="EscapetheGame"
 run/main_scene="res://Levels/MarioLevel/MarioLevel.tscn"
-config/icon="res://icon.png"
+boot_splash/image="res://Ressources/Splash Screen.png"
+config/icon="res://Ressources/Icon.png"
+config/windows_native_icon="res://Ressources/icon.ico"
 
 [display]
 

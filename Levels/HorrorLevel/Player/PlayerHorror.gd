@@ -46,3 +46,8 @@ func _physics_process(delta):
 	else:
 		$LD.set_visible(true)
 		$LG.set_visible(false)
+
+
+func _on_Area2D2_area_entered(area):
+	canMove = false
+	pass # Replace with function body.

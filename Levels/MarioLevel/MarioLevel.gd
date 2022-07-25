@@ -27,5 +27,4 @@ func _on_Beans_crashGame():
 	pass # Replace with function body.
 
 func changeWorld():
-	print("badidon ça change quand même")
-	pass
+	get_tree().change_scene("res://Levels/HorrorLevel/HorrorLevel.tscn")

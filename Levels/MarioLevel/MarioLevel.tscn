@@ -672,10 +672,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( -2.5, 10.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( -2.5, 10.2, 10.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ true, false, false ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("ErrorScreen/Label:visible")
@@ -700,6 +700,20 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("../bgMusic")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 11 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
 }
 
 [node name="TestWorld" type="Node2D"]
@@ -1209,7 +1223,7 @@ position = Vector2( 19080, 856 )
 stream = ExtResource( 30 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 8720, 408 )
+position = Vector2( 200, 768 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
@@ -1426,9 +1440,9 @@ autoplay = true
 [connection signal="displayBeans" from="Terrain/BeanCollectible" to="CanvasLayer/Beans" method="_on_BeanCollectible_displayBeans"]
 [connection signal="body_entered" from="Terrain/BeanCollectible/Area2D" to="Terrain/BeanCollectible" method="_on_Area2D_body_entered"]
 [connection signal="finished" from="Terrain/BeanCollectible/Collected" to="Terrain/BeanCollectible" method="_on_AudioStreamPlayer_finished"]
-[connection signal="body_entered" from="Terrain/FallingZones/FallingOffScreen" to="CanvasLayer/Beans" method="_on_FallingOffScreen_body_entered"]
-[connection signal="body_entered" from="Terrain/FallingZones/FallingOffScreen" to="Player" method="_on_FallingOffScreen_body_entered"]
 [connection signal="body_entered" from="Terrain/FallingZones/FallingOffScreen" to="Terrain/FallingZones/FallingOffScreen" method="_on_FallingOffScreen_body_entered"]
+[connection signal="body_entered" from="Terrain/FallingZones/FallingOffScreen" to="Player" method="_on_FallingOffScreen_body_entered"]
+[connection signal="body_entered" from="Terrain/FallingZones/FallingOffScreen" to="CanvasLayer/Beans" method="_on_FallingOffScreen_body_entered"]
 [connection signal="crashGame" from="CanvasLayer/Beans" to="." method="_on_Beans_crashGame"]
 [connection signal="animation_finished" from="CanvasLayer/Beans/Bean1" to="Player" method="_on_Bean1_animation_finished"]
 [connection signal="animation_finished" from="CanvasLayer/Beans/Bean2" to="Player" method="_on_Bean2_animation_finished"]

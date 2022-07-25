@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/BrokenGlass.mp3-a45e105fe65a5da3f9134e1e179d4964.mp3str"
+
+[deps]
+
+source_file="res://Levels/HorrorLevel/BrokenGlass.mp3"
+dest_files=[ "res://.import/BrokenGlass.mp3-a45e105fe65a5da3f9134e1e179d4964.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
